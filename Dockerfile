@@ -25,4 +25,4 @@ VOLUME ["/data"]
 
 EXPOSE 5050
 
-CMD ["/config/boot.sh", "python", "CouchPotato.py", "--data_dir=/data", "--config=/tmp/couchpotato.ini"]
+CMD ["/config/boot.sh", "python", "CouchPotato.py", "--data_dir=/data", "--config=/tmp/couchpotato.ini", "--console_log"]

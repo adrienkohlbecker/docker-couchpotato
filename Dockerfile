@@ -1,23 +1,14 @@
-FROM ubuntu:trusty
-
-ENV DEBIAN_FRONTEND noninteractive
+FROM kohlby/base:latest
 
 RUN sed -i "/^# deb.*multiverse/ s/^# //" /etc/apt/sources.list && \
     apt-get update && \
-    # couchpotato deps
-    apt-get install -y --force-yes unrar unzip git curl python python-lxml libssl-dev python-pip python-dev libffi-dev && \
-    # shr deps
-    apt-get install -y --force-yes git mercurial && \
+    apt-get install -y --force-yes unrar unzip git python python-lxml libssl-dev python-pip python-dev libffi-dev && \
     pip install pyopenssl && \
     git clone https://github.com/RuudBurger/CouchPotatoServer.git /opt/couchpotato && \
     apt-get -y autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
-
-RUN curl http://homebrew.staging.cfn.aws.shr.st/shr/shr-20150920234558-linux.deb -o shr.deb && \
-    dpkg -i shr.deb && \
-    rm shr.deb
 
 RUN groupadd --gid 2000 media && \
     useradd --uid 2004 --gid 2000 --create-home couchpotato && \
@@ -33,8 +24,5 @@ VOLUME ["/data"]
 
 EXPOSE 5050
 
-ENV SHR_EXEC_MODE development
 ENV SHR_EXEC_USER couchpotato
-
-ENTRYPOINT ["shr", "exec", "--"]
 CMD ["bin/boot", "python", "/opt/couchpotato/CouchPotato.py", "--data_dir=/data", "--config=/tmp/couchpotato.ini", "--console_log"]

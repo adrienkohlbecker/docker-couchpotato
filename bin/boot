@@ -5,8 +5,7 @@ set -eu
 set -o pipefail
 IFS=$'\n\t'
 
-
-cat /config/couchpotato.ini \
+cat /app/couchpotato/couchpotato.ini \
   | sed "s|COUCHPOTATO_API_KEY|$COUCHPOTATO_API_KEY|" \
   | sed "s|COUCHPOTATO_PORT|$COUCHPOTATO_PORT|" \
   | sed "s|SABNZBD_API_KEY|$SABNZBD_API_KEY|" \

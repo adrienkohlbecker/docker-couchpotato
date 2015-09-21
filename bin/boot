@@ -13,11 +13,8 @@ cat /app/couchpotato/couchpotato.ini \
   | sed "s|SABNZBD_PORT|$SABNZBD_PORT|" \
   | sed "s|TRANSMISSION_HOST|$TRANSMISSION_HOST|" \
   | sed "s|TRANSMISSION_PORT|$TRANSMISSION_PORT|" \
-  | sed "s|PLEX_AUTH_TOKEN|$PLEX_AUTH_TOKEN|" \
   | sed "s|PLEX_HOST|$PLEX_HOST|" \
-  | sed "s|PLEX_PASSWORD|$PLEX_PASSWORD|" \
   | sed "s|PLEX_PORT|$PLEX_PORT|" \
-  | sed "s|PLEX_USERNAME|$PLEX_USERNAME|" \
   | sed "s|NZBGEEK_API_KEY|$NZBGEEK_API_KEY|" \
   > /tmp/couchpotato.ini
 

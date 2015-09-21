@@ -2,6 +2,8 @@
 couchpotato:
   build: .
   container_name: couchpotato
+  hostname: couchpotato
+  domainname: kohlby.fr
   volumes:
     - /opt/ejson/keys:/opt/ejson/keys:ro
     - /mnt/docker/couchpotato:/data

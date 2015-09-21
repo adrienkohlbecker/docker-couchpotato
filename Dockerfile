@@ -19,10 +19,11 @@ RUN curl http://homebrew.staging.cfn.aws.shr.st/shr/shr-20150920234558-linux.deb
     dpkg -i shr.deb && \
     rm shr.deb
 
-RUN useradd --uid 2004 --user-group --create-home couchpotato && \
-    chown -R couchpotato /opt/couchpotato && \
+RUN groupadd --gid 2000 media && \
+    useradd --uid 2004 --gid 2000 --create-home couchpotato && \
+    chown -R couchpotato:media /opt/couchpotato && \
     mkdir /data && \
-    chown -R couchpotato /data
+    chown -R couchpotato:media /data
 USER couchpotato
 
 ADD . /app/couchpotato

@@ -1,6 +1,7 @@
 ---
 couchpotato:
   build: .
+  container_name: couchpotato
   volumes:
     - /opt/ejson/keys:/opt/ejson/keys:ro
     - /mnt/docker/couchpotato:/data

@@ -18,4 +18,18 @@ cat /app/couchpotato/couchpotato.ini \
   | sed "s|NZBGEEK_API_KEY|$NZBGEEK_API_KEY|" \
   > /tmp/couchpotato.ini
 
+# Clean environment variables not needed at runtine
+# .env
+unset COUCHPOTATO_PORT
+unset SABNZBD_HOST
+unset SABNZBD_PORT
+unset PLEX_HOST
+unset PLEX_PORT
+unset TRANSMISSION_HOST
+unset TRANSMISSION_PORT
+# .credentials
+unset SABNZBD_API_KEY
+unset COUCHPOTATO_API_KEY
+unset NZBGEEK_API_KEY
+
 exec ${*:1}

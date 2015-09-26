@@ -1,7 +1,7 @@
 COUCHPOTATO_PORT=5050
 SABNZBD_HOST=sabnzbd.kohlby.fr
 SABNZBD_PORT=80
-PLEX_HOST=plex.kohlby.fr
+PLEX_HOST=plex-api.kohlby.fr
 PLEX_PORT=80
 
 # TODO

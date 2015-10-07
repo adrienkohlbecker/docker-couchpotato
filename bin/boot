@@ -5,15 +5,17 @@ set -eu
 set -o pipefail
 IFS=$'\n\t'
 
+HOST_IP=$(/sbin/ip route | awk '/default/ { print $3 }')
+
 cat /app/couchpotato/couchpotato.ini \
   | sed "s|COUCHPOTATO_API_KEY|$COUCHPOTATO_API_KEY|" \
   | sed "s|COUCHPOTATO_PORT|$COUCHPOTATO_PORT|" \
   | sed "s|SABNZBD_API_KEY|$SABNZBD_API_KEY|" \
-  | sed "s|SABNZBD_HOST|$SABNZBD_HOST|" \
+  | sed "s|SABNZBD_HOST|$HOST_IP|" \
   | sed "s|SABNZBD_PORT|$SABNZBD_PORT|" \
-  | sed "s|TRANSMISSION_HOST|$TRANSMISSION_HOST|" \
+  | sed "s|TRANSMISSION_HOST|$HOST_IP|" \
   | sed "s|TRANSMISSION_PORT|$TRANSMISSION_PORT|" \
-  | sed "s|PLEX_HOST|$PLEX_HOST|" \
+  | sed "s|PLEX_HOST|$HOST_IP|" \
   | sed "s|PLEX_PORT|$PLEX_PORT|" \
   | sed "s|NZBGEEK_API_KEY|$NZBGEEK_API_KEY|" \
   > /tmp/couchpotato.ini
@@ -21,11 +23,8 @@ cat /app/couchpotato/couchpotato.ini \
 # Clean environment variables not needed at runtine
 # .env
 unset COUCHPOTATO_PORT
-unset SABNZBD_HOST
 unset SABNZBD_PORT
-unset PLEX_HOST
 unset PLEX_PORT
-unset TRANSMISSION_HOST
 unset TRANSMISSION_PORT
 # .credentials
 unset SABNZBD_API_KEY

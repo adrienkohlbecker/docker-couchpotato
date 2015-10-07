@@ -13,3 +13,5 @@ couchpotato:
   user: root
   stdin_open: true
   tty: true
+  ports:
+    - 5050:5050

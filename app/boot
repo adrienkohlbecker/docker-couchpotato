@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Unofficial bash strict mode http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -eu
+set -o pipefail
+IFS=$'\n\t'
+
+eval "$(ejson-kms export)"
+
+unset AWS_ACCESS_KEY_ID
+unset AWS_SECRET_ACCESS_KEY
+unset AWS_SESSION_TOKEN
+unset AWS_REGION
+
+cat /app/couchpotato.ini \
+  | sed "s|COUCHPOTATO_API_KEY|$COUCHPOTATO_API_KEY|" \
+  | sed "s|SABNZBD_API_KEY|$SABNZBD_API_KEY|" \
+  | sed "s|NZBGEEK_API_KEY|$NZBGEEK_API_KEY|" \
+  > /tmp/couchpotato.ini
+
+exec ${*:1}

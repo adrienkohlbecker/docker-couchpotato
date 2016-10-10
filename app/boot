@@ -16,6 +16,7 @@ cat /app/couchpotato.ini \
   | sed "s|COUCHPOTATO_API_KEY|$COUCHPOTATO_API_KEY|" \
   | sed "s|SABNZBD_API_KEY|$SABNZBD_API_KEY|" \
   | sed "s|NZBGEEK_API_KEY|$NZBGEEK_API_KEY|" \
+  | sed "s|PLEX_TOKEN|$PLEX_TOKEN|" \
   > /tmp/couchpotato.ini
 
 exec ${*:1}

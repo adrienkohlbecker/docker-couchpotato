@@ -4,7 +4,7 @@ RUN sed -i "/^# deb.*multiverse/ s/^# //" /etc/apt/sources.list && \
     apt-get update && \
     apt-get install -y git python python-pip python-lxml libssl-dev libffi-dev && \
     pip install --upgrade pyopenssl && \
-    git clone https://github.com/RuudBurger/CouchPotatoServer.git /opt/couchpotato && \
+    git clone https://github.com/CouchPotato/CouchPotatoServer.git /opt/couchpotato && \
     apt-get -y autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \

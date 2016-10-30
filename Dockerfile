@@ -11,11 +11,11 @@ RUN sed -i "/^# deb.*multiverse/ s/^# //" /etc/apt/sources.list && \
     rm -rf /tmp/*
 
 RUN groupadd --gid 2000 media && \
-    useradd --uid 2004 --gid 2000 --create-home couchpotato && \
-    chown -R couchpotato:media /opt/couchpotato && \
+    useradd --uid 2000 --gid 2000 --create-home media && \
+    chown -R media:media /opt/couchpotato && \
     mkdir /data && \
-    chown -R couchpotato:media /data
-USER couchpotato
+    chown -R media:media /data
+USER media
 
 VOLUME ["/data"]
 EXPOSE 80

@@ -5,7 +5,10 @@ set -eu
 set -o pipefail
 IFS=$'\n\t'
 
-eval "$(ejson-kms export)"
+SABNZBD_API_KEY=$(aws ssm get-parameter --region eu-west-1 --name sabnzbd.api_key --with-decryption --query "Parameter.Value" --out text)
+COUCHPOTATO_API_KEY=$(aws ssm get-parameter --region eu-west-1 --name couchpotato.api_key --with-decryption --query "Parameter.Value" --out text)
+NZBGEEK_API_KEY=$(aws ssm get-parameter --region eu-west-1 --name nzbgeek.api_key --with-decryption --query "Parameter.Value" --out text)
+PLEX_TOKEN=$(aws ssm get-parameter --region eu-west-1 --name plex.token --with-decryption --query "Parameter.Value" --out text)
 
 unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY

@@ -5,10 +5,14 @@ set -eu
 set -o pipefail
 IFS=$'\n\t'
 
+# plex uses --net host
+PLEX_HOST=$(ip route | awk '/default/ { print $3 }')
+
 cat /app/couchpotato.ini \
   | sed "s|COUCHPOTATO_API_KEY|$COUCHPOTATO_API_KEY|" \
   | sed "s|SABNZBD_API_KEY|$SABNZBD_API_KEY|" \
   | sed "s|NZBGEEK_API_KEY|$NZBGEEK_API_KEY|" \
+  | sed "s|PLEX_HOST|$PLEX_HOST|" \
   | sed "s|PLEX_TOKEN|$PLEX_TOKEN|" \
   > /tmp/couchpotato.ini
 

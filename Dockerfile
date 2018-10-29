@@ -18,7 +18,7 @@ RUN groupadd --gid 2000 media && \
 USER media
 
 VOLUME ["/data"]
-EXPOSE 80
+EXPOSE 5050
 CMD ["/app/boot", "python", "/opt/couchpotato/CouchPotato.py", "--data_dir=/data", "--config=/tmp/couchpotato.ini", "--console_log"]
 
 ADD app /app

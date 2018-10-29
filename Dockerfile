@@ -1,4 +1,6 @@
-FROM akohlbecker/base:latest
+FROM ubuntu:18.04
+
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN sed -i "/^# deb.*multiverse/ s/^# //" /etc/apt/sources.list && \
     apt-get update && \

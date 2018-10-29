@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN sed -i "/^# deb.*multiverse/ s/^# //" /etc/apt/sources.list && \
     apt-get update && \
-    apt-get install -y git python python-pip python-lxml libssl-dev libffi-dev && \
+    apt-get install -y git python python-pip python-lxml libssl-dev libffi-dev iproute2 && \
     pip install --upgrade pyopenssl && \
     git clone https://github.com/CouchPotato/CouchPotatoServer.git /opt/couchpotato && \
     apt-get -y autoremove && \
